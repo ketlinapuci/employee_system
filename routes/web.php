@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DepartmentController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -17,9 +18,10 @@ Route::post('/login', [AuthController::class, 'authenticate'])->name('auth.authe
 // Logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-
 // Admin Dashboard
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
 // Employee Dashboard
 Route::get('/employee/dashboard', [EmployeeController::class, 'index'])->name('employee.dashboard');
+
+Route::resource('/admin/department',DepartmentController::class);

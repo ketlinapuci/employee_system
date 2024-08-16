@@ -51,7 +51,7 @@
                                 <div class="sb-nav-link-icon"><i class="fa fa-user fa-lg"></i></div>
                                 Add Employees
                             </a>
-                            <a class="nav-link" href="{{ url('') }}">
+                            <a class="nav-link" href="{{ url('admin/department') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Departments
                             </a>
