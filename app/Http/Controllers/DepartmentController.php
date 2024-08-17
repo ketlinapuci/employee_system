@@ -58,7 +58,9 @@ class DepartmentController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.department.edit');
+        $data = Department::find($id);
+        $departments = Department::all();
+        return view('admin.department.edit', compact('data', 'departments'));
     }
 
     /**
@@ -66,7 +68,18 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $request->validate([
+            'title'=>'required',
+            'parent_id' => 'nullable|exists:departments,id'
+        ]);
+
+        $data=Department::find($id);
+        $data->name=$request->title;
+        $data->parent_id = $request->parent_id;
+        $data->save();
+
+        return redirect('admin/department/'.$id.'/edit')->with('msg','Department has been updated!');
     }
 
     /**
