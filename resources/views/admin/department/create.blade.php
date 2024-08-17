@@ -30,6 +30,17 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>Parent Department</th>
+                    <td>
+                        <select name="parent_id" class="form-control">
+                            <option value="">-- Select Parent Department --</option>
+                            @foreach($departments as $department)
+                                <option value="{{ $department->id }}">{{ $department->name }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                </tr>
+                <tr>
                     <td colspan="2">
                         <input type="submit" class="btn btn-primary" value="Submit" />
                     </td>

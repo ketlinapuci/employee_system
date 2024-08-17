@@ -23,7 +23,8 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        return view('admin.department.create');
+        $departments = Department::all();
+        return view('admin.department.create', compact('departments'));
     }
 
     /**
@@ -32,11 +33,13 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required'
+            'title'=>'required',
+            'parent_id' => 'nullable|exists:departments,id'
         ]);
 
         $data=new Department();
         $data->name=$request->title;
+        $data->parent_id = $request->parent_id;
         $data->save();
 
         return redirect('admin/department/create')->with('msg','Department Created Successfully!');
@@ -71,6 +74,7 @@ class DepartmentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Department::where('id',$id)->delete();
+        return redirect('admin/department');
     }
 }

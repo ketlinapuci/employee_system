@@ -24,4 +24,6 @@ Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.d
 // Employee Dashboard
 Route::get('/employee/dashboard', [EmployeeController::class, 'index'])->name('employee.dashboard');
 
+// Department
+Route::get('admin/department/{id}/delete',[DepartmentController::class,'destroy']);
 Route::resource('/admin/department',DepartmentController::class);
