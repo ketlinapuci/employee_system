@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeManageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
@@ -27,3 +28,7 @@ Route::get('/employee/dashboard', [EmployeeController::class, 'index'])->name('e
 // Department
 Route::get('admin/department/{id}/delete',[DepartmentController::class,'destroy']);
 Route::resource('/admin/department',DepartmentController::class);
+
+// Employee
+Route::get('admin/employeemanage/{id}/delete',[EmployeeManageController::class,'destroy']);
+Route::resource('/admin/employeemanage',EmployeeManageController::class);
