@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\Employee;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeManageController extends Controller
 {
@@ -16,7 +18,8 @@ class EmployeeManageController extends Controller
         $data = Employee::orderBy('id','desc')->get();
 
         // Add departments data to the view
-        return view('admin.employeemanage.index', compact('data'));    }
+        return view('admin.employeemanage.index', compact('data'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -54,6 +57,18 @@ class EmployeeManageController extends Controller
         $data->email=$request->email;
         $data->department_id=$request->department;
 
+        $data->save();
+
+        // Create a user for the employee
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make('password'),
+            'role' => 'employee',
+        ]);
+
+        // Associate the user with the employee
+        $data->user_id = $user->id;
         $data->save();
 
         return redirect('admin/employeemanage/create')->with('msg','Employee Created Successfully!');

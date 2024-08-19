@@ -65,4 +65,10 @@ class User extends Authenticatable
     {
         return $this->role === 'employee';
     }
+
+    public function employee()
+    {
+        return $this->hasOne(Employee::class);
+    }
+
 }
