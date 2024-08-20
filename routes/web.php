@@ -25,6 +25,12 @@ Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.d
 // Employee Dashboard
 Route::get('/employee/dashboard', [EmployeeController::class, 'index'])->name('employee.dashboard');
 
+
+Route::get('/employee/profile/edit', [EmployeeController::class, 'editProfile'])->name('employee.profile.edit');
+
+// Route to handle the profile update form submission
+Route::post('/employee/profile/update', [EmployeeController::class, 'updateProfile'])->name('employee.profile.update');
+
 // Department
 Route::get('admin/department/{id}/delete',[DepartmentController::class,'destroy']);
 Route::resource('/admin/department',DepartmentController::class);
@@ -32,3 +38,5 @@ Route::resource('/admin/department',DepartmentController::class);
 // Employee
 Route::get('admin/employeemanage/{id}/delete',[EmployeeManageController::class,'destroy']);
 Route::resource('/admin/employeemanage',EmployeeManageController::class);
+
+Route::get('/admin/department/{id}/employees', [DepartmentController::class, 'employees']);

@@ -1,7 +1,7 @@
 <ul>
     @foreach ($children as $child)
         <li style="margin-bottom: 10px;">
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center" data-id="{{ $child->id }}">
                 <div>{{ $child->name }}</div>
                 <div>
                     <a href="{{ url('admin/department/' . $child->id . '/edit') }}" class="btn btn-info btn-sm" style="margin-top: 5px;">Update</a>
