@@ -46,6 +46,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
+                            <a class="nav-link" href="{{ url('employee/chat') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chat"></i></div>
+                                Chat
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

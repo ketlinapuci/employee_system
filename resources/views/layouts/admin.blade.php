@@ -55,6 +55,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Departments
                             </a>
+                            <a class="nav-link" href="{{ url('admin/chat') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chat"></i></div>
+                                Chat
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

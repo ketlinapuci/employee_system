@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\DepartmentController;
 
 // Route::get('/', function () {
@@ -40,3 +41,12 @@ Route::get('admin/employeemanage/{id}/delete',[EmployeeManageController::class,'
 Route::resource('/admin/employeemanage',EmployeeManageController::class);
 
 Route::get('/admin/department/{id}/employees', [DepartmentController::class, 'employees']);
+
+//Chat
+Route::get('/chat/{userId}', [ChatController::class, 'showChat'])->name('chat.show');
+Route::post('/chat/send', [ChatController::class, 'sendMessage'])->name('chat.send');
+Route::get('/chat/messages/{userId}', [ChatController::class, 'fetchMessages'])->name('chat.messages');
+
+
+Route::get('/admin/chat', [ChatController::class, 'index'])->name('admin.chat');
+Route::get('/employee/chat', [ChatController::class, 'index'])->name('employee.chat');
