@@ -6,6 +6,7 @@ use App\Models\Department;
 use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class EmployeeManageController extends Controller
@@ -15,6 +16,10 @@ class EmployeeManageController extends Controller
      */
     public function index()
     {
+        if (!Auth::check() || !Auth::user()->isAdmin()) {
+            return response()->view('errors.403', [], 403);
+        }
+
         $data = Employee::orderBy('id','desc')->get();
 
         // Add departments data to the view
@@ -35,8 +40,6 @@ class EmployeeManageController extends Controller
      */
     public function store(Request $request)
     {
-        // var_dump($request->name, $request->file('photo'));
-        // die;
         $request->validate([
             'name'=>'required',
             'photo'=>'required|image|mimes:jpg,png,gif',
@@ -122,6 +125,14 @@ class EmployeeManageController extends Controller
         $data->department_id=$request->department;
 
         $data->save();
+
+        // Update the associated user data
+        $user = User::find($data->user_id);
+        if ($user) {
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+    }
 
         return redirect('admin/employeemanage/'.$id.'/edit')->with('msg','Employee Updated Successfully!');
     }

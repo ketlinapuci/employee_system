@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DepartmentController extends Controller
 {
@@ -13,6 +14,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
+        if (!Auth::check() || !Auth::user()->isAdmin()) {
+            return response()->view('errors.403', [], 403);
+        }
         $departments = Department::whereNull('parent_id')->with('children')->get();
 
         // Add departments data to the view
