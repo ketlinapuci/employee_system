@@ -50,3 +50,6 @@ Route::get('/chat/messages/{userId}', [ChatController::class, 'fetchMessages'])-
 
 Route::get('/admin/chat', [ChatController::class, 'index'])->name('admin.chat');
 Route::get('/employee/chat', [ChatController::class, 'index'])->name('employee.chat');
+
+Route::get('/admin/profile/edit', [AdminController::class, 'editProfile'])->name('admin.profile.edit');
+Route::post('/admin/profile/update', [AdminController::class, 'updateProfile'])->name('admin.profile.update');

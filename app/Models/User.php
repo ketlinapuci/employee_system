@@ -81,5 +81,10 @@ class User extends Authenticatable
         return $this->hasMany(Message::class, 'receiver_id');
     }
 
+    public function admin()
+{
+    return $this->hasOne(Admin::class);
+}
+
 
 }

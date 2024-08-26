@@ -47,7 +47,7 @@
                                 Dashboard
                             </a>
                             <a class="nav-link" href="{{ url('employee/chat') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chat"></i></div>
+                                <div class="sb-nav-link-icon"><i class="far fa-comment"></i></div>
                                 Chat
                             </a>
                         </div>

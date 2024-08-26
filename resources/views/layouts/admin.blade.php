@@ -21,7 +21,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Profile</a></li>
+                        <li><a class="dropdown-item" href="{{ route('admin.profile.edit') }}">Profile</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li>
                             <form action="{{ url('logout') }}" method="POST" id="logout-form">
@@ -56,7 +56,7 @@
                                 Departments
                             </a>
                             <a class="nav-link" href="{{ url('admin/chat') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chat"></i></div>
+                                <div class="sb-nav-link-icon"><i class="far fa-comment	"></i></div>
                                 Chat
                             </a>
                         </div>
